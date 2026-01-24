@@ -34,3 +34,5 @@ build/
 
 
 /paybridge-loan-service
+
+.env
