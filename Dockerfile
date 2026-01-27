@@ -17,7 +17,7 @@ RUN mvn dependency:go-offline -B
 ENV SPRING_DEVTOOLS_RESTART_ENABLED=true
 
 # Expose the app port
-EXPOSE 8080
+EXPOSE 8084
 
 # Run the app using Maven
 CMD ["mvn", "spring-boot:run"]

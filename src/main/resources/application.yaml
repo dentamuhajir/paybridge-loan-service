@@ -1,8 +1,10 @@
+server:
+  port: 8084
 spring:
   application:
     name: paybridge-loan-service
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/paybridge_loan}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://paybridge-postgres:5432/paybridge_loan}
     username: ${SPRING_DATASOURCE_USERNAME:dentamuhajir}
     password: ${SPRING_DATASOURCE_PASSWORD:5MbVqyTEZ42wFS4as9iwZ7}
     driver-class-name: org.postgresql.Driver
