@@ -36,6 +36,9 @@ public class LoanApplication {
     @Column(nullable = false)
     private LoanApplicationStatus status;
 
+    @Column(name = "approved_at")
+    private Instant approvedAt;
+
     @Column(name = "submitted_at")
     private Instant submittedAt;
 
@@ -65,6 +68,17 @@ public class LoanApplication {
         app.status = LoanApplicationStatus.SUBMITTED;
         app.submittedAt = Instant.now();
         return app;
+    }
+
+    public void approve() {
+        if(this.status != LoanApplicationStatus.SUBMITTED) {
+            throw new InvalidLoanApplicationException(
+                    "Only SUBMITTED application can be approved"
+            );
+        }
+
+        this.status = LoanApplicationStatus.APPROVED;
+        this.approvedAt = Instant.now();
     }
 
     public UUID getId() { return id; }

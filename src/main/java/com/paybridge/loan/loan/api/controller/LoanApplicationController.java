@@ -7,10 +7,9 @@ import com.paybridge.loan.loan.application.service.LoanApplicationService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/loan-applications")
@@ -33,6 +32,18 @@ public class LoanApplicationController {
                         "Loan application submitted",
                         LoanApplicationResponse.from(app)
                 ));
+
+    }
+    @PostMapping("{id}/approve")
+    public ResponseEntity<ApiResponse<Void>> approve(
+            @PathVariable UUID id
+    ) {
+
+        service.approve(id);
+
+        return ResponseEntity.ok(
+                ApiResponse.success("Loan application approved", null)
+        );
 
     }
 
