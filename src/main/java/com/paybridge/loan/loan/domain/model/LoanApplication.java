@@ -1,6 +1,7 @@
 package com.paybridge.loan.loan.domain.model;
 
 import com.paybridge.loan.loan.domain.enums.LoanApplicationStatus;
+import com.paybridge.loan.loan.domain.exception.InvalidLoanApplicationException;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -47,6 +48,13 @@ public class LoanApplication {
             UUID loanTenorId,
             BigDecimal requestedAmount
     ) {
+
+        if(requestedAmount == null | requestedAmount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new InvalidLoanApplicationException(
+                    "Requested amount must be greater than zero"
+            );
+        }
+
         LoanApplication app = new LoanApplication();
         app.id = UUID.randomUUID();
         app.userId = userId;
