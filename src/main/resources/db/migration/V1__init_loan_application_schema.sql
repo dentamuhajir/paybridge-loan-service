@@ -18,13 +18,16 @@ CREATE TABLE loan_applications (
     interest_rate NUMERIC(5,2),
     admin_fee NUMERIC(14,2),
 
-    status VARCHAR(30) NOT NULL,
+    status VARCHAR(20) NOT NULL,
 
-    submitted_at TIMESTAMP,
+    submitted_at TIMESTAMP NOT NULL DEFAULT now(),
     approved_at TIMESTAMP,
 
     created_at TIMESTAMP NOT NULL DEFAULT now(),
-    updated_at TIMESTAMP NOT NULL DEFAULT now()
+    updated_at TIMESTAMP NOT NULL DEFAULT now(),
+
+    CONSTRAINT ck_loan_application_status
+        CHECK (status IN ('SUBMITTED', 'APPROVED', 'REJECTED'))
 );
 
 CREATE INDEX idx_loan_applications_user_id
@@ -32,3 +35,6 @@ CREATE INDEX idx_loan_applications_user_id
 
 CREATE INDEX idx_loan_applications_status
     ON loan_applications(status);
+
+CREATE INDEX idx_loan_applications_user_status
+    ON loan_applications(user_id, status);
