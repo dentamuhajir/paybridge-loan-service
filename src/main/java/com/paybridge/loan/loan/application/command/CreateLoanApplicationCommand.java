@@ -8,5 +8,7 @@ public record CreateLoanApplicationCommand (
     UUID productId,
     UUID loanProductId,
     UUID loanTenorId,
+    BigDecimal interestRate,
+    BigDecimal adminFee,
     BigDecimal requestedAmount
 ) {}

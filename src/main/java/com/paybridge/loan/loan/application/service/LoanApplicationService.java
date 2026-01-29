@@ -25,6 +25,8 @@ public class LoanApplicationService {
                 command.productId(),
                 command.loanProductId(),
                 command.loanTenorId(),
+                command.interestRate(),
+                command.adminFee(),
                 command.requestedAmount()
         );
 

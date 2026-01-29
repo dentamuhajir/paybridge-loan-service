@@ -29,6 +29,12 @@ public class LoanApplication {
     @Column(name = "loan_tenor_id", nullable = false)
     private UUID loanTenorId;
 
+    @Column(name = "interest_rate", precision = 5, scale = 2, nullable = false)
+    private BigDecimal interestRate;
+
+    @Column(name = "admin_fee", nullable = false)
+    private BigDecimal adminFee;
+
     @Column(name = "requested_amount", nullable = false)
     private BigDecimal requestedAmount;
 
@@ -49,6 +55,8 @@ public class LoanApplication {
             UUID productId,
             UUID loanProductId,
             UUID loanTenorId,
+            BigDecimal interestRate,
+            BigDecimal adminFee,
             BigDecimal requestedAmount
     ) {
 
@@ -64,6 +72,8 @@ public class LoanApplication {
         app.productId = productId;
         app.loanProductId = loanProductId;
         app.loanTenorId = loanTenorId;
+        app.interestRate = interestRate;
+        app.adminFee = adminFee;
         app.requestedAmount = requestedAmount;
         app.status = LoanApplicationStatus.SUBMITTED;
         app.submittedAt = Instant.now();

@@ -11,11 +11,13 @@ public record CreateLoanApplicationRequest(
         @NotNull UUID productId,
         @NotNull UUID loanProductId,
         @NotNull UUID loanTenorId,
+        @NotNull BigDecimal interestRate,
+        @NotNull BigDecimal adminFee,
         @NotNull BigDecimal requestedAmount
 ) {
     public CreateLoanApplicationCommand toCommand() {
         return new CreateLoanApplicationCommand(
-                userId, productId, loanProductId, loanTenorId, requestedAmount
+                userId, productId, loanProductId, loanTenorId, interestRate, adminFee, requestedAmount
         );
     }
 }
