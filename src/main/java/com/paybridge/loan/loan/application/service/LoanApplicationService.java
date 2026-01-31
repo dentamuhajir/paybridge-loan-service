@@ -1,5 +1,6 @@
 package com.paybridge.loan.loan.application.service;
 
+import com.paybridge.loan.loan.api.dto.response.ApproveLoanApplicationResponse;
 import com.paybridge.loan.loan.application.command.CreateLoanApplicationCommand;
 import com.paybridge.loan.loan.domain.exception.InvalidLoanApplicationException;
 import com.paybridge.loan.loan.domain.model.LoanApplication;
@@ -34,14 +35,13 @@ public class LoanApplicationService {
     }
 
     @Transactional
-    public void approve(UUID loanId) {
+    public LoanApplication approve(UUID loanId) {
         LoanApplication loanApplication = repository.findById(loanId)
                 .orElseThrow(() ->
                         new InvalidLoanApplicationException("Loan application not found")
                 );
         loanApplication.approve();
-
-        repository.save(loanApplication);
+        return repository.save(loanApplication);
     }
 
 }
