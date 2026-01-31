@@ -21,3 +21,14 @@ management:
     web:
       exposure:
         include: health,info
+
+product:
+  service:
+#    base-url: http://localhost:8083
+    base-url: http://host.docker.internal:8083
+    api-key: f7a3d9e2b1c85a4096e213b764d19a82f35c0e189674bc27d91f4a5e3028c61b
+
+logging:
+  level:
+    org.springframework.web.reactive.function.client.ExchangeFunctions: DEBUG
+    reactor.netty.http.client: DEBUG
