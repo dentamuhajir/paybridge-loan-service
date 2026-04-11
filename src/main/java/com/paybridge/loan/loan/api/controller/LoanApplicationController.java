@@ -50,7 +50,7 @@ public class LoanApplicationController {
     }
     @GetMapping("{userId}")
     public ResponseEntity<ApiResponse<List<LoanApplicationDetailResponse>>> getAllByUserId(
-            @RequestParam UUID userId
+            @PathVariable UUID userId
     ) {
 
         var applications = service.getAllByUserId(userId);
