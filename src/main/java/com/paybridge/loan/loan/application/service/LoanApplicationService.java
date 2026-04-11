@@ -22,8 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -58,6 +58,11 @@ public class LoanApplicationService {
         this.disbursementDateCalculator = disbursementDateCalculator;
         this.installmentScheduleGenerator = installmentScheduleGenerator;
     }
+
+    public List<LoanApplication> getAllByUserId(UUID userId) {
+        return loanApplicationRepository.findByUserId(userId);
+    }
+
 
     public LoanApplication apply(CreateLoanApplicationCommand command) {
 

@@ -2,6 +2,7 @@ package com.paybridge.loan.loan.api.controller;
 
 import com.paybridge.loan.api.response.ApiResponse;
 import com.paybridge.loan.loan.api.dto.request.CreateLoanApplicationRequest;
+import com.paybridge.loan.loan.api.dto.response.LoanApplicationDetailResponse;
 import com.paybridge.loan.loan.api.dto.response.LoanApplicationResponse;
 import com.paybridge.loan.loan.application.service.LoanApplicationService;
 import jakarta.validation.Valid;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -46,5 +48,19 @@ public class LoanApplicationController {
         );
 
     }
+    @GetMapping("{userId}")
+    public ResponseEntity<ApiResponse<List<LoanApplicationDetailResponse>>> getAllByUserId(
+            @RequestParam UUID userId
+    ) {
 
+        var applications = service.getAllByUserId(userId);
+
+        var responseData = applications.stream()
+                .map(LoanApplicationDetailResponse::from)
+                .toList();
+
+        return ResponseEntity.ok(
+                ApiResponse.success("Loan applications fetched", responseData)
+        );
+    }
 }
