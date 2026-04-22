@@ -29,10 +29,9 @@ public class LoanDisbursementService {
     }
 
     public void disburse(Loan loan) {
-        loan.activate();
+        loan.markDisbursementPending();
         loanRepository.save(loan);
-        // update ledger
+        // update ledger in transaction service
+        // send notification to user forn notification service
     }
-
-
 }

@@ -104,4 +104,13 @@ public class Loan {
         this.status = LoanStatus.ACTIVE;
         this.disbursedAt = Instant.now();
     }
+
+    public void markDisbursementPending() {
+        if (this.status != LoanStatus.CREATED) {
+            throw new InvalidLoanException(
+                    "Only CREATED loan can be disbursed"
+            );
+        }
+        this.status = LoanStatus.DISBURSEMENT_PENDING;
+    }
 }
