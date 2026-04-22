@@ -43,7 +43,7 @@ product:
 
 transaction:
   service:
-    base-url: ${TRANSACTION_SERVICE_BASE_URL:http://paybridge-transaction-svc:8082}
+    base-url: ${TRANSACTION_SERVICE_BASE_URL:http://paybridge-transaction-svc-dev:8082}
     api-key: ${TOKEN_TRANSACTION_SERVICE}
 
 logging:

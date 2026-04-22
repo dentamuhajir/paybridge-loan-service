@@ -15,7 +15,7 @@ public class LoanDisbursementScheduler {
         this.loanDisbursementService = loanDisbursementService;
     }
 
-    @Scheduled(cron = "5 * * * * ?")
+    @Scheduled(cron = "0 */10 * * * ?")
     public void runAutoDisbursement() {
         log.info("[Scheduler] Starting auto disbursement job");
 
